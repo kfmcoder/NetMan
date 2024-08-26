@@ -4,7 +4,6 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-clear
 # Format
 b='\033[1m'
 r='\033[0m'
@@ -39,7 +38,7 @@ nmcli dev wifi
         | Option | Action                     |
         +--------+----------------------------+
 MANAGE  | ainf   | Show All Network Adapters  |
-        | dinf   | Show Adapters information  | # nmcli dev show
+        | dinf   | Show Adapters information  |
         | winf   | Show Wireless Adapters     |
         | unet   | Up the Network Card        |
         | dnet   | Down the Network Card      |
@@ -48,14 +47,14 @@ MANAGE  | ainf   | Show All Network Adapters  |
         | cmac   | Custom Mac Address         |
         | cipa   | Custom IP Address          |
         +--------+----------------------------+
-SCAN    | fscan  | Full scan                  |
-        | cscan  | Channels scan              |
-        | sscan  | ESSID scan                 |
+SCAN    | fscn   | Full scan                  |
+        | cscn   | Channels scan              |
+        | sscn   | ESSID scan                 |
         +--------+----------------------------+
-CONNECT | gstat  | General Status             |
-        | ldevs  | List Network Devices       |
-        | lconn  | List Connection            |
-        | cwifi  | Connect to Wifi AP         |
+CONNECT | gsts   | General Status             |
+        | ldev   | List Network Devices       |
+        | lcon   | List Connection            |
+        | wcon   | Connect to Wifi AP         |
         | 
         |
         | i      | About NetMan Tool          |
@@ -178,7 +177,7 @@ while true; do
             break
         done
         ;;
-    12)
+    "")
 	clear
         echo -e "$notify No selection $r"
         ;;
@@ -188,12 +187,3 @@ while true; do
         ;;
     esac
 done
-case $option in 
-    "") 
-        clear
-        echo "no selection"
-        ;;
-        *)
-        echo "*"
-        ;;
-        esac
