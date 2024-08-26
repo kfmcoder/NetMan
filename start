@@ -1,0 +1,143 @@
+#!/bin/bash
+clear
+
+# Format
+b='\033[1m'
+r='\033[0m'
+
+# Colors
+RED='\033[0;31m'
+
+# Misc
+notify="${RED}[!]:"
+
+# Function to display the menu
+display_menu() {
+    echo -e "${b}Wireless Networks tool${r} | by KFM"
+    echo -e "
+	[i] Available networks
+	"
+nmcli dev wifi
+    echo 
+    echo "SCAN --------------------"
+    echo "1- Full scan"
+    echo "2- ESSID scan"
+    echo "3- Channels scan"
+    echo 
+    echo "CONNECT -----------------"
+    echo "4- General status"
+    echo "5- Show devices"
+    echo "6- Show connection"
+    echo "7- Connect to Wifi AP"
+    echo
+    echo "MORE --------------------"
+    echo "0- to leave"
+    echo "-------------------------"
+}
+
+while true; do
+    display_menu
+    read -p "Choose an option: " option
+
+    case $option in
+	0)
+		echo
+		echo "Goodbye"
+		echo
+		exit
+	;;
+	up)
+		ifconfig wlan0 up
+		echo wlan0 is up
+	;;
+        1)
+            while true; do
+		clear
+                echo "Full scanning"
+                iwlist wlan0 scan
+                echo "Press Enter to return to the main menu or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        2)
+            while true; do
+                clear
+		echo "ESSID scanning"
+                iwlist wlan0 scan | grep -i essid
+                echo "Press Enter to return to the main menu or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        3)
+            while true; do
+		clear
+                echo "Channels scanning"
+                iwlist wlan0 channel
+		echo
+                echo "Press Enter to return to the main menu or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        4)
+            while true; do
+                clear
+		echo "General status"
+                nmcli general status
+                echo
+		echo "Press Enter to return to the main menu or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        5)
+            while true; do
+                clear
+		echo "Available devices"
+                nmcli dev
+                echo "Press Enter to return to the main menu or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        6)
+            while true; do
+                clear
+		echo "Connection:"
+                nmcli connection show
+                echo "Press Enter to return to the main menu or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        7)
+            while true; do
+		echo "Enter network name or SSID:"
+                read netname
+                echo "Enter password:"
+                read -s netpass
+                nmcli dev wifi connect "$netname" password "$netpass"
+                echo "Press Enter to go back or refresh or ^C to exit."
+                read
+		clear
+                break
+            done
+            ;;
+        "")
+		clear
+            echo -e "${notify} No selection ${r}"
+            ;;
+        *)
+    		clear
+		echo -e "${notify} Select a correct option ${r}"
+            ;;
+    esac
+done
