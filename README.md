@@ -15,7 +15,7 @@ custom  MAC  and IP addresses,  and manage  network interfaces
 with ease.
 
 ### Key Features:
-- **Network Adapter Control:**
+- **Network Adapter Control:** \n
   View, bring up, or bring down network adapters  with  simple 
   commands.  NetMan  also supports restarting network services 
   and modifying adapter details like MAC addresses.
@@ -42,7 +42,7 @@ with ease.
 
 ### Usability:
   NetMan can be used in various network management scenarios: 
-- Personal Use: 
+- **Personal Use:**
   For individuals managing their home or personal Linux 
   system’s network settings.
 
