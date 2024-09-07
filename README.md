@@ -15,7 +15,7 @@ custom  MAC  and IP addresses,  and manage  network interfaces
 with ease.
 
 ### Key Features:
-- **Network Adapter Control:** \n
+- **Network Adapter Control:**
   View, bring up, or bring down network adapters  with  simple 
   commands.  NetMan  also supports restarting network services 
   and modifying adapter details like MAC addresses.
