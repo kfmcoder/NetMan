@@ -99,8 +99,8 @@ CONNECT | gsts   | General Status             |
         | lcon   | List Connection            |
         | wcon   | Connect to Wifi AP         |
         +--------+----------------------------+
-OTHER   | r	     | Refresh		              |
-	    | i      | About NetMan Tool          |
+OTHER   | r      | Refresh	              |
+        | i      | About NetMan Tool          |
         | q      | Quit                       |
         +--------+----------------------------+
 
