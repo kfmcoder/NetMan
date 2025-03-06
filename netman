@@ -1,4 +1,49 @@
 #!/bin/bash
+
+# DESCRIPTION: NetMan is a Network Manager Tool designed for managing network adapters, connections, and devices on Linux-based systems.
+# AUTHOR: KFM
+# VERSION: 0.1
+# CREATED: 2024
+
+# This script provides a command-line interface (CLI) for network management tasks, including:
+# - Viewing available networks
+# - Managing network adapters (showing information, bringing up/down, restarting)
+# - Scanning networks (full scan, channel scan, ESSID scan)
+# - Connecting to WiFi access points
+# - Customizing MAC and IP addresses
+# - Displaying general network status and available devices
+
+# The script uses various network management commands such as `nmcli`, `ifconfig`, `iwconfig`, `iwlist`, and `macchanger`.
+
+# MENU OPTIONS:
+# MANAGE:
+# - ainf: Show all network adapters
+# - dinf: Show adapters information
+# - winf: Show wireless adapters
+# - netu: Bring up the network card
+# - netd: Bring down the network card
+# - rest: Restart Network Manager
+# - rmac: Random MAC address
+# - cmac: Custom MAC address
+# - cipa: Custom IP address
+
+# SCAN:
+# - fscn: Full scan
+# - cscn: Channels scan
+# - sscn: ESSID scan
+
+# CONNECT:
+# - gsts: General status
+# - ldev: List network devices
+# - lcon: List connections
+# - wcon: Connect to WiFi access point
+
+# OTHER:
+# - r: Refresh
+# - i: About NetMan Tool
+# - q: Quit
+
+# The script continuously displays the menu and prompts the user for input, executing the corresponding actions based on the selected option.
 sudo
 clear
 
@@ -53,9 +98,9 @@ CONNECT | gsts   | General Status             |
         | ldev   | List Network Devices       |
         | lcon   | List Connection            |
         | wcon   | Connect to Wifi AP         |
- 	+--------+----------------------------+
-OTHER   | r	 | Refresh		      |
-	| i      | About NetMan Tool          |
+        +--------+----------------------------+
+OTHER   | r	     | Refresh		              |
+	    | i      | About NetMan Tool          |
         | q      | Quit                       |
         +--------+----------------------------+
 
@@ -64,6 +109,9 @@ OTHER   | r	 | Refresh		      |
 
 while true; do
     display_menu
+    # Prompt the user for input with a customized prompt that includes the hostname.
+    # The prompt text is styled with ANSI escape codes to appear in bold blue.
+    # The user's input is stored in the variable 'option'.
     read -p $'\033[1;34mNetMan@'"$HOSTNAME"$': $ \033[0m' option
     case $option in
 	r)
@@ -131,6 +179,11 @@ while true; do
         sudo ifconfig wlan0 down
         echo "[i] wlan0 is down"
         ;;
+    # This case block handles the 'rest' option.
+    # It performs the following actions:
+    # 1. Clears the terminal screen.
+    # 2. Restarts the NetworkManager service using systemctl.
+    # 3. Prints a message indicating that the Network Manager has been restarted.
     rest)
 	clear
         systemctl restart NetworkManager
