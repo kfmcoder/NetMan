@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo cp netman /bin/ && echo "(i): Installed, type netman to start using."
